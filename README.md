@@ -61,6 +61,7 @@ cargo run -p weknora-rust
 curl http://127.0.0.1:8080/healthz
 curl http://127.0.0.1:8080/api/v1/version
 curl http://127.0.0.1:8080/api/v1/capabilities
+curl http://127.0.0.1:8080/api/v1/rewrite-plan
 ```
 
 ## Docker Compose 部署
@@ -83,6 +84,7 @@ WEKNORA_RUST_PORT=18080 docker compose -f docker-compose.rust.yml up --build
 curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/healthz
 curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/api/v1/version
 curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/api/v1/capabilities
+curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/api/v1/rewrite-plan
 ```
 
 停止服务：
@@ -124,6 +126,10 @@ cargo test --manifest-path rust/Cargo.toml
   "implementation": "rust"
 }
 ```
+
+### `GET /api/v1/rewrite-plan`
+
+返回 WeKnora-Rust 分模块语言选型和迁移计划。详细说明见 [`docs/WEKNORA_RUST_LANGUAGE_STRATEGY.md`](./docs/WEKNORA_RUST_LANGUAGE_STRATEGY.md)。
 
 ### `GET /api/v1/capabilities`
 

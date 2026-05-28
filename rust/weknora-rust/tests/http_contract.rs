@@ -31,6 +31,32 @@ fn capabilities_expose_migration_phase() {
 }
 
 #[test]
+fn rewrite_plan_exposes_language_assignments() {
+    let response = call(Method::Get, "/api/v1/rewrite-plan");
+
+    assert_eq!(response.status, 200);
+    assert!(response.body.contains(r#""project":"WeKnora-Rust""#));
+    assert!(
+        response
+            .body
+            .contains(r#""component":"rag-retrieval-runtime""#)
+    );
+    assert!(response.body.contains(r#""target_stack":"Rust""#));
+    assert!(response.body.contains(r#""component":"docreader""#));
+    assert!(
+        response
+            .body
+            .contains(r#""target_stack":"Python service behind Rust boundary""#)
+    );
+    assert!(response.body.contains(r#""component":"web-frontend""#));
+    assert!(
+        response
+            .body
+            .contains(r#""target_stack":"Vue / TypeScript""#)
+    );
+}
+
+#[test]
 fn unknown_route_uses_typed_error_envelope() {
     let response = call(Method::Get, "/api/v1/chat");
 
