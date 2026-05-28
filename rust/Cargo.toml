@@ -1,0 +1,3 @@
+[workspace]
+members = ["weknora-rust"]
+resolver = "3"

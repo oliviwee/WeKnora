@@ -1,0 +1,10 @@
+[package]
+name = "weknora-rust"
+version = "0.1.0"
+edition = "2024"
+description = "Rust rewrite track for the WeKnora-Rust RAG server"
+license = "MIT"
+repository = "https://github.com/oliviwee/WeKnora"
+publish = false
+
+[dependencies]

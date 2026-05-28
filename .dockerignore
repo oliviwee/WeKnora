@@ -37,6 +37,7 @@ temp/
 *.pid
 
 # 本地构建产物 / 二进制
+rust/target/
 WeKnora
 WeKnora-lite
 /server
