@@ -29,6 +29,22 @@ Environment variables:
 | `WEKNORA_SERVER_HOST` | `0.0.0.0` | Bind host for the Rust server. |
 | `WEKNORA_SERVER_PORT` | `8080` | Bind port for the Rust server. |
 
+## Docker Compose
+
+From the repository root:
+
+```bash
+docker compose -f docker-compose.rust.yml up --build
+```
+
+Use `WEKNORA_RUST_PORT` to change the host port when `8080` is already in use:
+
+```bash
+WEKNORA_RUST_PORT=18080 docker compose -f docker-compose.rust.yml up --build
+```
+
+The image is built by `docker/Dockerfile.rust`; the container healthcheck calls the built-in `weknora-rust --healthcheck` command, so it does not depend on curl or wget being installed in the runtime image.
+
 ## Rewrite Strategy
 
 1. Keep wire contracts compatible with the existing `/api/v1` API before replacing handlers.

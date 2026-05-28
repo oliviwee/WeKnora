@@ -63,6 +63,34 @@ curl http://127.0.0.1:8080/api/v1/version
 curl http://127.0.0.1:8080/api/v1/capabilities
 ```
 
+## Docker Compose 部署
+
+WeKnora-Rust 提供独立的 Docker Compose 文件，适合验证 Rust 服务是否可以完整容器化启动。
+
+```bash
+docker compose -f docker-compose.rust.yml up --build
+```
+
+默认会构建 `docker/Dockerfile.rust`，启动 `weknora-rust` 服务，并将容器内 `8080` 端口映射到宿主机 `8080`。如果本机端口已被占用，可以覆盖宿主机端口：
+
+```bash
+WEKNORA_RUST_PORT=18080 docker compose -f docker-compose.rust.yml up --build
+```
+
+部署完成后可验证：
+
+```bash
+curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/healthz
+curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/api/v1/version
+curl http://127.0.0.1:${WEKNORA_RUST_PORT:-8080}/api/v1/capabilities
+```
+
+停止服务：
+
+```bash
+docker compose -f docker-compose.rust.yml down
+```
+
 ## 开发命令
 
 ```bash
@@ -122,6 +150,8 @@ cargo test --manifest-path rust/Cargo.toml
 ## 目录结构
 
 ```text
+docker-compose.rust.yml         # WeKnora-Rust Docker Compose 部署文件
+docker/Dockerfile.rust          # WeKnora-Rust 容器镜像构建文件
 rust/
 ├── Cargo.toml                  # Rust workspace
 ├── README.md                   # Rust 子工程说明
