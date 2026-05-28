@@ -1,6 +1,10 @@
-# WeKnora Rust Rewrite
+# WeKnora-Rust Workspace
 
-This workspace is the first Rust implementation track for WeKnora. It is intentionally isolated from the existing Go, Python, frontend, and mini-program code so the rewrite can proceed incrementally without destabilizing the current product.
+This directory contains the Rust rewrite track for **WeKnora-Rust**.
+
+Repository: <https://github.com/oliviwee/WeKnora>
+
+The workspace is intentionally isolated from the legacy Go, Python, frontend, and mini-program code so the rewrite can proceed incrementally without destabilizing the current product.
 
 ## Scope
 
@@ -15,7 +19,7 @@ The initial milestone provides a runnable Rust HTTP service with:
 
 ```bash
 cd rust
-cargo run -p weknora-server
+cargo run -p weknora-rust
 ```
 
 Environment variables:

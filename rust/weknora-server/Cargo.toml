@@ -1,9 +1,0 @@
-[package]
-name = "weknora-server"
-version = "0.1.0"
-edition = "2024"
-description = "Rust rewrite track for the WeKnora RAG server"
-license = "MIT"
-publish = false
-
-[dependencies]

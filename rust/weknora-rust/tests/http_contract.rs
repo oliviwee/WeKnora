@@ -1,5 +1,5 @@
-use weknora_server::http::{HttpRequest, Method};
-use weknora_server::{config::Config, handle_request, state::AppState};
+use weknora_rust::http::{HttpRequest, Method};
+use weknora_rust::{config::Config, handle_request, state::AppState};
 
 #[test]
 fn healthz_reports_ok() {
@@ -15,7 +15,7 @@ fn version_uses_v1_api_base_path() {
     let response = call(Method::Get, "/api/v1/version");
 
     assert_eq!(response.status, 200);
-    assert!(response.body.contains(r#""name":"WeKnora""#));
+    assert!(response.body.contains(r#""name":"WeKnora-Rust""#));
     assert!(response.body.contains(r#""api_base_path":"/api/v1""#));
     assert!(response.body.contains(r#""implementation":"rust""#));
 }
@@ -38,7 +38,7 @@ fn unknown_route_uses_typed_error_envelope() {
     assert!(response.body.contains(r#""code":"route.not_found""#));
 }
 
-fn call(method: Method, path: &str) -> weknora_server::http::HttpResponse {
+fn call(method: Method, path: &str) -> weknora_rust::http::HttpResponse {
     let state = AppState::new(Config::for_tests());
     let request = HttpRequest {
         method,

@@ -2,14 +2,14 @@ use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 use std::process;
 
-use weknora_server::config::Config;
-use weknora_server::http::HttpRequest;
-use weknora_server::state::AppState;
-use weknora_server::{handle_request, http::HttpResponse};
+use weknora_rust::config::Config;
+use weknora_rust::http::HttpRequest;
+use weknora_rust::state::AppState;
+use weknora_rust::{handle_request, http::HttpResponse};
 
 fn main() {
     if let Err(err) = run() {
-        eprintln!("failed to start WeKnora Rust server: {err}");
+        eprintln!("failed to start WeKnora-Rust server: {err}");
         process::exit(1);
     }
 }
@@ -20,7 +20,7 @@ fn run() -> Result<(), Box<dyn std::error::Error>> {
     let listener = TcpListener::bind(addr)?;
     let state = AppState::new(config);
 
-    println!("starting WeKnora Rust server at http://{addr}");
+    println!("starting WeKnora-Rust server at http://{addr}");
     for stream in listener.incoming() {
         match stream {
             Ok(stream) => handle_connection(stream, &state),

@@ -9,7 +9,7 @@ pub struct VersionResponse {
 impl Default for VersionResponse {
     fn default() -> Self {
         Self {
-            name: "WeKnora",
+            name: "WeKnora-Rust",
             version: env!("CARGO_PKG_VERSION"),
             api_base_path: "/api/v1",
             implementation: "rust",
